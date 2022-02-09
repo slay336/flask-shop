@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <p>Index Page</p>
+    {% if user %}
+        <p>User: {{ user }}</p>
+    {% else %}
+        <p>No user</p>
+    {% endif %}
+{% endblock %}
