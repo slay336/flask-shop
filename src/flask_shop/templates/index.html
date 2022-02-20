@@ -2,8 +2,9 @@
 
 {% block body %}
     <p>Index Page</p>
-    {% if user %}
-        <p>User: {{ user }}</p>
+    {% set current_user = session.get("user") %}
+    {% if current_user %}
+        <p>User: {{ current_user }}</p>
     {% else %}
         <p>No user</p>
     {% endif %}

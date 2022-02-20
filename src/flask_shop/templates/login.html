@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <p>Login page</p>
+    <div class="container">
+        <div class="row">
+            Логин
+        </div>
+        <div class="row">
+            <a href="{{ url_for('auth.register_user') }}">Регистрация</a>
+        </div>
+    </div>
 {% endblock %}

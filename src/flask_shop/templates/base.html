@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+    {% set current_user = session.get("user") %}
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('views.index') }}" class="brand-logo">
+                        <i class="material-icons">shopping_cart</i>
+                        Goodshop
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        {% if current_user %}
+                            <li>
+                                <a href="{{ url_for('views.cart') }}">
+                                    <i class="material-icons">add_shopping_cart</i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('auth.logout') }}">
+                                    Выход&nbsp;<i class="material-icons right">exit_to_app</i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ url_for('auth.login') }}">Войти</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <div class="page-footer footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <span class="col s4 offset-s4">2022&nbsp;Vyacheslav&nbsp;Uvarov&nbsp;©</span>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
